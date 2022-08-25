@@ -47,5 +47,4 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'images': ['/create_pos_product/static/description/icon.png'],
 }
