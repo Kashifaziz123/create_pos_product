@@ -9,7 +9,7 @@
         Long description of module's purpose
     """,
 
-    'author': "alhaditech",
+    'author': "Alhaditech",
     'website': "http://www.alhaditech.com",
 
     # Categories can be used to filter modules in modules listing
@@ -20,7 +20,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'point_of_sale'],
-    'images': ['static/description/cover_image.png'],
+    'images': ['static/description/cover_image.jpg'],
     # 'qweb': ['static/src/xml/btn_product.xml'],
 
     # always loaded
@@ -47,5 +47,4 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'images': ['/create_pos_product/static/description/icon.png'],
 }
