@@ -9,7 +9,7 @@
         Long description of module's purpose
     """,
 
-    'author': "alhaditech",
+    'author': "Alhaditech",
     'website': "http://www.alhaditech.com",
 
     # Categories can be used to filter modules in modules listing
