@@ -21,6 +21,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'point_of_sale'],
+    'images': ['static/description/icon.png'],
     # 'qweb': ['static/src/xml/btn_product.xml'],
 
     # always loaded
