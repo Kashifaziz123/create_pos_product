@@ -20,7 +20,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'point_of_sale'],
-    'images': ['static/description/cover_image.png'],
+    'images': ['static/description/cover_image.jpg'],
     # 'qweb': ['static/src/xml/btn_product.xml'],
 
     # always loaded
