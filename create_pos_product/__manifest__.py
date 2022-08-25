@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "create_pos_product",
+    'name': "Odoo POS Add Product",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Add product in odoo point of sale screen""",
 
     'description': """
         Long description of module's purpose
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "alhaditech",
+    'website': "http://www.alhaditech.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -21,7 +20,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'point_of_sale'],
-    'images': ['/static/description/icon.png'],
+    'images': ['static/description/cover_image.png'],
     # 'qweb': ['static/src/xml/btn_product.xml'],
 
     # always loaded
