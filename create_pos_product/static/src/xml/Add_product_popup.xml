@@ -82,6 +82,20 @@
                                     </select>
                                 </div>
                         </div>
+                        <div>
+                            <div>
+                                <br/>
+                                <span class="label">
+                                    Barcode
+                                </span>
+
+                                <br/>
+                                <br/>
+                                <div class="input-field">
+                                <input type="text" name="barcode" t-ref="input-amount-ref" t-model="state.barcode"/>
+                            </div>
+                        </div>
+                        </div>
 
                     </main>
                     <footer class="footer">
