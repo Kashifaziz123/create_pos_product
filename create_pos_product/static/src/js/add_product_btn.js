@@ -1,4 +1,4 @@
-odoo.define('pos_custom_buttons.RewardButton', function(require) {
+odoo.define('create_pos_product.RewardButton', function(require) {
 'use strict';
    const { Gui } = require('point_of_sale.Gui');
    const PosComponent = require('point_of_sale.PosComponent');
@@ -32,12 +32,14 @@ odoo.define('pos_custom_buttons.RewardButton', function(require) {
                 var product_price = payload[2];
                 var product_type = payload[3];
                 var product_uom = payload[4];
+                var product_barcode = payload[5];
                 ajax.jsonRpc('/Add_Product', 'call', {
                     'category': product_category,
                     'name': product_name,
                     'price': product_price,
                     'uom': product_uom,
                     'type': product_type,
+                    'barcode': product_barcode,
                 }).then(function(response) {});
             }
         }
