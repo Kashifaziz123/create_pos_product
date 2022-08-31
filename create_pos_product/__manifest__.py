@@ -32,17 +32,15 @@
     'assets': {
         'point_of_sale.assets': [
             '/create_pos_product/static/src/js/AddProductPopup.js',
-            # '/create_pos_product/static/src/js/new_btn.js',
             '/create_pos_product/static/src/js/add_product_btn.js',
+            '/create_pos_product/static/src/js/ProductListScreen.js',
             '/create_pos_product/static/src/css/label.css',
             '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">',
         ],
         'web.assets_qweb': [
             '/create_pos_product/static/src/xml/Add_product_popup.xml',
             '/create_pos_product/static/src/xml/Add_product_btn.xml',
-            # '/create_pos_product/static/src/xml/btn_product.xml',
-            # '/create_pos_product/static/src/xml/product_screen.xml',
-            # '/create_pos_product/static/src/xml/product_screen.xml',
+            '/create_pos_product/static/src/xml/ProductListScreen.xml',
         ],
     },
     # only loaded in demonstration mode

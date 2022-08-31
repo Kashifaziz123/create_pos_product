@@ -1,4 +1,4 @@
-odoo.define('create_pos_product.RewardButton', function(require) {
+odoo.define('create_pos_product.CustomRewardButtons', function(require) {
 'use strict';
    const { Gui } = require('point_of_sale.Gui');
    const PosComponent = require('point_of_sale.PosComponent');
@@ -18,30 +18,7 @@ odoo.define('create_pos_product.RewardButton', function(require) {
            return order
        }
        async onClick() {
-            var self = this;
-            const {
-                confirmed,
-                payload
-            } = await this.showPopup('Add_product_popup', {
-                title: this.env._t(' Add Product'),
-                body: this.env._t('Add New Product'),
-            });
-            if (confirmed) {
-                var product_category = payload[0];
-                var product_name = payload[1];
-                var product_price = payload[2];
-                var product_type = payload[3];
-                var product_uom = payload[4];
-                var product_barcode = payload[5];
-                ajax.jsonRpc('/Add_Product', 'call', {
-                    'category': product_category,
-                    'name': product_name,
-                    'price': product_price,
-                    'uom': product_uom,
-                    'type': product_type,
-                    'barcode': product_barcode,
-                }).then(function(response) {});
-            }
+            await this.showTempScreen('CustomListScreen');
         }
    }
    CustomRewardButtons.template = 'CustomRewardButtons';
