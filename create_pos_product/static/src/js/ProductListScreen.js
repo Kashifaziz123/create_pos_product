@@ -12,13 +12,13 @@ odoo.define('create_pos_product.CustomListScreen', function(require) {
     class CustomListScreen extends PosComponent {
         constructor() {
             super(...arguments);
-//            useListener('update-search', this._updateSearch);
-//            this.searchWordInput = useRef('search-word-input');
-//            this.updateSearch = debounce(this.updateSearch, 100);
+            useListener('update-search', this._updateSearch);
+//            useListener('update-productList', this.productsToDisplay);
+            this.state = owl.hooks.useState({ searchWord: '' });
 
             this.state = {
                 query: null,
-//                selectedProduct: this.props.product,
+                productID: 0,
                 detailIsShown: false,
                 isEditMode: false,
                 editModeProps: {
@@ -30,7 +30,7 @@ odoo.define('create_pos_product.CustomListScreen', function(require) {
             };
             this.updateProductList = debounce(this.updateProductList, 70);
         }
-        // Lifecycle hooks
+
         back() {
             if(this.state.detailIsShown) {
                 this.state.detailIsShown = false;
@@ -40,11 +40,6 @@ odoo.define('create_pos_product.CustomListScreen', function(require) {
                 this.trigger('close-temp-screen');
             }
         }
-//        confirm() {
-//            this.props.resolve({ confirmed: true, payload: this.state.selectedProduct });
-//            this.trigger('close-temp-screen');
-//        }
-        // Getters
         async button_click()
         {
             var self = this;
@@ -72,36 +67,56 @@ odoo.define('create_pos_product.CustomListScreen', function(require) {
                 }).then(function(response) {});
             }
         }
-//        confirm() {
-//            this.props.resolve({ confirmed: true, payload: this.state.selectedProduct });
-//            this.trigger('close-temp-screen');
-//        }
 
+        get searchWord() {
+            return this.state.searchWord.trim();
+        }
+        async _updateSearch(event) {
+        this.state.searchWord = event.detail;
+       let foundProductIds = [];
+        foundProductIds = await this.rpc({
+        model: 'product.product',
+        method: 'search',
+        args: [[['name', 'ilike', this.state.searchWord]]],
+        context: this.env.session.user_context,
+        });
+        if(this.state.searchWord=='')
+        {
+        this.state.productID = 0;
+        }
+        else
+        {
+        this.state.productID = foundProductIds[0];
+        }
+        const products = this.productsToDisplay;
+        console.log(this.state.productID);
+        return this.state.productID;
+        }
+
+        reload(){
+            window.location.reload();
+        }
+
+        get productsToDisplay() {
+           let res;
+           if(this.state.productID!==0)
+           {
+           res = this.env.pos.db.get_product_by_id(this.state.productID);
+           }
+           else
+           {
+           res = this.env.pos.db.get_product_by_category(0);
+           }
+//           return res.sort(function (a, b) { return (a.name || '').localeCompare(b.name || '') });
+            return res;
+            }
         get currentOrder() {
             return this.env.pos.get_order();
         }
-//        get nextButton() {
-//            if (!this.props.product) {
-//                return { command: 'set', text: this.env._t('Set Product') };
-//            } else if (this.props.product && this.props.product === this.state.selectedProduct) {
-//                return { command: 'deselect', text: this.env._t('Deselect Product') };
-//            } else {
-//                return { command: 'set', text: this.env._t('Change Product') };
-//            }
-//        }
-
-        get products() {
-            let res;
-           res = this.env.pos.db.get_product_by_category(0);
-            return res.sort(function (a, b) { return (a.name || '').localeCompare(b.name || '') });
+        async updateSearch(event) {
+            this.trigger('update-search', event.target.value);
+//            this.trigger('update-productList', event.target.value);
         }
-        async updateProductList(event) {
-            alert("Hello")
-        }
-//        clickNext() {
-//            this.state.selectedProduct = this.nextButton.command === 'set' ? this.state.selectedProduct : null;
-//            this.confirm();
-//        }
     }
     CustomListScreen.template = 'CustomListScreen';
 

@@ -6,11 +6,16 @@
                     <div class="screen-content">
                         <div class="top-content">
                             <div class="button back" t-on-click="back">
-                        <i class="fa fa-angle-double-left"/>
+                                <i class="fa fa-angle-double-left"/>
                                 <t t-if="!env.isMobile"> Discard</t>
-                    </div>
+                            </div>
+                            <div class="button back" t-on-click="reload">
+                                <i class="fa fa-angle-double-left"/>
+                                <t t-if="!env.isMobile"> Refresh</t>
+                            </div>
                             <div t-if="!state.detailIsShown" class="searchbox-client top-content-center">
-                                <input t-ref="search-word-input" placeholder="Search Products...." size="1" t-on-keyup="updateProductList"/>
+                                <input t-ref="search-word-input" placeholder="Search Products...." size="1"
+                                       t-on-keyup="updateSearch"/>
                             </div>
                             <div t-if="!state.detailIsShown &amp;&amp; !state.selectedClient"
                                  class="button new-customer" role="img" aria-label="Add a product"
@@ -24,25 +29,19 @@
                             <div class="client-window">
                                 <section class="subwindow list">
                                     <div class="subwindow-container">
-                                        <div t-if="!state.detailIsShown" class="subwindow-container-fix scrollable-y">
+                                        <div class="subwindow-container-fix scrollable-y">
                                             <table class="client-list">
                                                 <thead>
                                                     <tr style="background-color: #99b3e6; color: white;">
                                                         <th>Name</th>
-                                                        <th t-if="!env.isMobile">Category</th>
-                                                        <th t-if="!env.isMobile">List Price</th>
-                                                        <th t-if="env.isMobile">Cost Price</th>
+                                                        <th>Category</th>
+                                                        <th>List Price</th>
                                                         <th class="client-line-email">Barcode</th>
                                                         <th class="client-line-last-column-placeholder oe_invisible"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="client-list-contents">
-                                                    <t t-foreach="products" t-as="product" t-key="product.id">
-<!--                                                        <td>-->
-                                                        <!--                                                            <tr>-->
-                                                        <!--                                                                -->
-                                                        <!--                                                            </tr>-->
-                                                        <!--                                                        </td>-->
+                                                    <t t-foreach="productsToDisplay" t-as="product" t-key="product.id">
                                                         <td>
                                                             <tr>
                                                                 <t t-if="product.default_code">
