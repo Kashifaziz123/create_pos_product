@@ -30,7 +30,7 @@
                                 <section class="subwindow list">
                                     <div class="subwindow-container">
                                         <div class="subwindow-container-fix scrollable-y">
-                                            <table class="client-list">
+                                            <table id="list" class="client-list">
                                                 <thead>
                                                     <tr style="background-color: #99b3e6; color: white;">
                                                         <th>Name</th>
@@ -40,7 +40,7 @@
                                                         <th class="client-line-last-column-placeholder oe_invisible"></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="client-list-contents">
+                                                <tbody id="table-body" class="client-list-contents">
                                                     <t t-foreach="productsToDisplay" t-as="product" t-key="product.id">
                                                         <td>
                                                             <tr>
