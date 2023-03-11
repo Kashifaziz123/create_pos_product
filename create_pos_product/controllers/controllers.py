@@ -15,7 +15,7 @@ class PosProductCreation(http.Controller):
 
         request.env['product.template'].sudo().create({
             'name': name,
-            'detailed_type': type,
+            'type': type,
             'list_price': float(price),
             'categ_id': int(category),
             'uom_id': int(uom),
